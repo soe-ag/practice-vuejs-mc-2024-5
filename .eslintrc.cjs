@@ -13,6 +13,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    'no-unused-vars': 'warn'
+    'no-unused-vars': 'warn',
+    'vue/multi-word-component-names': 0
   }
 }

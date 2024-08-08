@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { supabase } from '@/lib/supabaseClient'
-import { ref } from 'vue'
+import { h, ref } from 'vue'
 import type { Tables } from 'database/types'
+import type { ColumnDef } from '@tanstack/vue-table'
+import DataTable from '@/components/ui/data-table/DataTable.vue'
 
 const projects = ref<Tables<'projects'>[] | null>(null)
 //IIFE immediately invoked function expression
@@ -14,6 +16,25 @@ const projects = ref<Tables<'projects'>[] | null>(null)
   projects.value = data
   console.log('Projects: ', projects)
 })()
+
+const columns: ColumnDef<Tables<'projects'>>[] = [
+  {
+    accessorKey: 'name',
+    header: () => h('div', { class: 'text-left' }, 'Name'),
+    cell: ({ row }) => h('div', { class: 'text-left font-medium' }, row.getValue('name'))
+  },
+  {
+    accessorKey: 'status',
+    header: () => h('div', { class: 'text-left' }, 'Status'),
+    cell: ({ row }) => h('div', { class: 'text-left font-medium' }, row.getValue('status'))
+  },
+  {
+    accessorKey: 'collaborators',
+    header: () => h('div', { class: 'text-left' }, 'Collaborators'),
+    cell: ({ row }) =>
+      h('div', { class: 'text-left font-medium' }, JSON.stringify(row.getValue('collaborators')))
+  }
+]
 </script>
 
 <template>
@@ -23,6 +44,8 @@ const projects = ref<Tables<'projects'>[] | null>(null)
     <!-- <pre>
       {{ projects }}
     </pre> -->
-    <div v-for="project in projects" :key="project.id" class="">{{ project.name }}</div>
+    <!-- <div v-for="project in projects" :key="project.id" class="">{{ project.name }}</div> -->
+
+    <DataTable v-if="projects" :columns="columns" :data="projects" />
   </div>
 </template>

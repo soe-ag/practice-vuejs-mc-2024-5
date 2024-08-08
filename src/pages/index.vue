@@ -9,6 +9,6 @@
     <RouterLink :to="{ name: '/projects/' }">Go to Projects</RouterLink>
     <br />
     <br />
-    <RouterLink :to="{ name: '/projects/tasks/' }">Go to Tasks</RouterLink>
+    <RouterLink :to="{ name: '/tasks/' }">Go to Tasks</RouterLink>
   </div>
 </template>

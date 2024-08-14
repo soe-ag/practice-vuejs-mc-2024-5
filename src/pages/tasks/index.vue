@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { supabase } from '@/lib/supabaseClient'
 import type { Tables } from 'database/types'
-import DataTable from '@/components/ui/data-table/DataTable.vue'
 
 const tasks = ref<Tables<'tasks'>[] | null>(null)
 //IIFE immediately invoked function expression

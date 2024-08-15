@@ -4,7 +4,7 @@ import type { Tables } from 'database/types'
 
 const tasks = ref<Tables<'tasks'>[] | null>(null)
 //IIFE immediately invoked function expression
-;(async () => {
+const getTasks = async () => {
   const { data, error } = await supabase.from('tasks').select()
 
   if (error) console.log(error)
@@ -12,7 +12,9 @@ const tasks = ref<Tables<'tasks'>[] | null>(null)
   // console.log('Projects: ', data)
   tasks.value = data
   console.log('Projects: ', tasks.value)
-})()
+}
+
+await getTasks()
 
 import { h } from 'vue'
 import type { ColumnDef } from '@tanstack/vue-table'

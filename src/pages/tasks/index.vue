@@ -2,6 +2,10 @@
 import { supabase } from '@/lib/supabaseClient'
 import type { Tables } from 'database/types'
 
+import { usePageStore } from '@/stores/page'
+
+usePageStore().pageData.title = 'Tasks Page'
+
 const tasks = ref<Tables<'tasks'>[] | null>(null)
 //IIFE immediately invoked function expression
 const getTasks = async () => {
@@ -60,7 +64,7 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
 
 <template>
   <div>
-    <h1>Tasks Page</h1>
+    <!-- <h1>Tasks Page</h1> -->
     <RouterLink to="/">Home</RouterLink>
     <DataTable v-if="tasks" :columns="columns" :data="tasks" />
   </div>

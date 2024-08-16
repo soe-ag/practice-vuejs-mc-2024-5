@@ -2,8 +2,6 @@
 import { supabase } from '@/lib/supabaseClient'
 import type { Tables } from 'database/types'
 
-import { usePageStore } from '@/stores/page'
-
 usePageStore().pageData.title = 'Tasks Page'
 
 const tasks = ref<Tables<'tasks'>[] | null>(null)

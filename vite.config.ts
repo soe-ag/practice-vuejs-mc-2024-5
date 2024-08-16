@@ -29,11 +29,15 @@ export default defineConfig({
       imports: [
         // presets
         'vue',
-        VueRouterAutoImports
+        VueRouterAutoImports,
+        {
+          pinia: ['defineStore', 'storeToRefs', 'acceptHMRUpdate']
+        }
       ],
 
       dts: true,
-      viteOptimizeDeps: true
+      viteOptimizeDeps: true,
+      dirs: ['src/stores']
     }),
     Components({
       /* options */

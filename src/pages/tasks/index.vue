@@ -8,9 +8,9 @@ usePageStore().pageData.title = 'Tasks Page'
 const tasks = ref<TasksWithProjects | null>(null)
 //IIFE immediately invoked function expression
 const getTasks = async () => {
-  const { data, error } = await tasksWithProjectsQuery
+  const { data, error, status } = await tasksWithProjectsQuery
 
-  if (error) console.log(error)
+  if (error) useErrorStore().setError({ error, customCode: status })
 
   // console.log('Projects: ', data)
   tasks.value = data
